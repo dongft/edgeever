@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 export const EDITOR_CONTENT_WIDTH_STORAGE_KEY = "edgeever.editor-content-width";
 export const EDITOR_CONTENT_WIDTH_CHANGED_EVENT = "edgeever:editor-content-width-changed";
 
-export const EDITOR_CONTENT_WIDTH_OPTIONS = ["880", "1080", "1280", "1440"] as const;
+export const EDITOR_CONTENT_WIDTH_OPTIONS = ["880", "1080", "1280", "1440", "1920"] as const;
 export type EditorContentWidth = (typeof EDITOR_CONTENT_WIDTH_OPTIONS)[number];
 
 export const DEFAULT_EDITOR_CONTENT_WIDTH: EditorContentWidth = "880";
