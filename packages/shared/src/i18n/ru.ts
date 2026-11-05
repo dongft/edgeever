@@ -1173,6 +1173,8 @@ export const ru = {
       start: "По левому краю",
     },
     editorBodyFontSizeTitle: "Размер текста",
+    editorContentWidthTitle: "Ширина текста",
+    editorContentWidthDefault: "По умолчанию",
     editorParagraphSpacingTitle: "Интервал между абзацами",
     editorTextAlignTitle: "Выравнивание текста",
     editorLetterSpacingTitle: "Межбуквенный интервал",

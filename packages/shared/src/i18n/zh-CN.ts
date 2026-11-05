@@ -1173,6 +1173,8 @@ export const zhCN = {
       start: "靠左显示",
     },
     editorBodyFontSizeTitle: "正文字号",
+    editorContentWidthTitle: "正文宽度",
+    editorContentWidthDefault: "默认",
     editorParagraphSpacingTitle: "段落间距",
     editorTextAlignTitle: "正文对齐",
     editorLetterSpacingTitle: "字间距",

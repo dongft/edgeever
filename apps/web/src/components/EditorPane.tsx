@@ -129,7 +129,8 @@ import {
   EDITOR_PANE_TIGHT_PX,
   shouldCompactEditorReadingGutter,
 } from "@/lib/editor-reading-gutter";
-import { EDITOR_CONTENT_MAX_WIDTH, EDITOR_OUTLINE_WIDTH } from "@/lib/workspace-ui";
+import { EDITOR_OUTLINE_WIDTH } from "@/lib/workspace-ui";
+import { useEditorContentWidthPreference } from "@/lib/editor-content-width-preference";
 import {
   resolveResourceUploadMimeType,
   countMemoCharacters,
@@ -730,6 +731,8 @@ const RichEditorPane = ({
 
   const memoRef = useRef<MemoDetail | null>(memo);
   const noteProseStyle = useNoteProseStylePreference();
+  const editorContentWidth = useEditorContentWidthPreference();
+  const editorContentMaxWidth = `${editorContentWidth}px`;
   const editSessionRef = useRef<MemoEditSession | null>(null);
   const editorRef = useRef<Editor | null>(null);
   const headingShortcutSurfaceRef = useRef({ markdown: false, plainText: false });
@@ -4040,7 +4043,7 @@ const RichEditorPane = ({
   const compactEditorReadingGutter = shouldCompactEditorReadingGutter({
     desktopColumn: isDesktopColumn,
     columnWidth: Math.max(0, editorColumnWidth - editorScrollbarGutter * 2),
-    articleMaxWidth: Number.parseInt(EDITOR_CONTENT_MAX_WIDTH, 10),
+    articleMaxWidth: Number.parseInt(editorContentMaxWidth, 10),
     reservedBesideArticle: outlineReservesSpace
       ? Number.parseInt(EDITOR_OUTLINE_WIDTH, 10) + EDITOR_ARTICLE_ROW_GAP_PX
       : 0,
@@ -4124,7 +4127,7 @@ const RichEditorPane = ({
               isDesktopColumn && desktopFocusMode && "mx-auto",
             )}
             style={{
-              ...(isDesktopColumn && desktopFocusMode ? { maxWidth: EDITOR_CONTENT_MAX_WIDTH } : {}),
+              ...(isDesktopColumn && desktopFocusMode ? { maxWidth: editorContentMaxWidth } : {}),
               ...(titleStatusClearancePx > 0 ? { paddingRight: titleStatusClearancePx } : {}),
             }}
           >
@@ -4629,7 +4632,7 @@ const RichEditorPane = ({
               useMarkdownSourceEditor && "flex h-full min-h-0 flex-col",
               isDesktopColumn && "mx-auto",
             )}
-            style={isDesktopColumn ? { maxWidth: EDITOR_CONTENT_MAX_WIDTH } : undefined}
+            style={isDesktopColumn ? { maxWidth: editorContentMaxWidth } : undefined}
           >
             {useMobilePlainTextEditor ? (
               <>

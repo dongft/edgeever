@@ -1162,6 +1162,8 @@ export const pl = {
       start: "Wyrównaj do lewej",
     },
     editorBodyFontSizeTitle: "Rozmiar tekstu",
+    editorContentWidthTitle: "Szerokość treści",
+    editorContentWidthDefault: "Domyślna",
     editorParagraphSpacingTitle: "Odstęp między akapitami",
     editorTextAlignTitle: "Wyrównanie tekstu",
     editorLetterSpacingTitle: "Odstęp między znakami",

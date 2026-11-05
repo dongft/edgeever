@@ -1162,6 +1162,8 @@ export const ja = {
       start: "左揃え",
     },
     editorBodyFontSizeTitle: "本文の文字サイズ",
+    editorContentWidthTitle: "本文の幅",
+    editorContentWidthDefault: "既定",
     editorParagraphSpacingTitle: "段落間隔",
     editorTextAlignTitle: "本文の配置",
     editorLetterSpacingTitle: "文字間隔",

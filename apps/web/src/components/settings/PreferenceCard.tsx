@@ -5,7 +5,7 @@ import { FONT_CATALOG, NOTE_BODY_FONT_MENU_GROUPS, isRemoteNoteImageFont, type R
 import { FontLoadFeedback } from "@/components/FontLoadFeedback";
 import { editorFontLoadState, uiFontLoadState, retryEditorCatalogFont, retryUiCatalogFont } from "@/lib/editor-catalog-fonts";
 import { FontLabel } from "@/components/FontLabel";
-import { AlignLeft, AlignVerticalSpaceAround, AppWindow, BookOpenText, ChartNoAxesCombined, Code2, Heading, Highlighter, Image, LayoutTemplate, Languages, ListTree, MousePointerClick, MoveHorizontal, Palette, Pilcrow, Quote, Sparkles, SpellCheck, SunMoon, Type } from "lucide-react";
+import { AlignLeft, AlignVerticalSpaceAround, AppWindow, BookOpenText, ChartNoAxesCombined, Code2, Heading, Highlighter, Image, LayoutTemplate, Languages, ListTree, Maximize2, MousePointerClick, MoveHorizontal, Palette, Pilcrow, Quote, Sparkles, SpellCheck, SunMoon, Type } from "lucide-react";
 import { useState, useEffect, useSyncExternalStore, type ReactNode } from "react";
 import { useTranslation } from "react-i18next";
 import type {
@@ -37,6 +37,12 @@ import {
   useNoteProseStylePreference,
   writeNoteProseStylePreference,
 } from "@/lib/note-prose-style-preference";
+import {
+  DEFAULT_EDITOR_CONTENT_WIDTH,
+  EDITOR_CONTENT_WIDTH_OPTIONS,
+  useEditorContentWidthPreference,
+  writeEditorContentWidthPreference,
+} from "@/lib/editor-content-width-preference";
 import {
   EDITOR_SPELLCHECK_CHANGED_EVENT,
   readEditorSpellcheckPreference,
@@ -268,6 +274,7 @@ export const PreferenceCard = ({
   const [aiSelectionMenuEnabled, setAiSelectionMenuEnabled] = useState(readAiSelectionMenuPreference);
   const [spellcheckEnabled, setSpellcheckEnabled] = useState(readEditorSpellcheckPreference);
   const noteProseStyle = useNoteProseStylePreference();
+  const editorContentWidth = useEditorContentWidthPreference();
   const [editorBodyFont, setEditorBodyFont] = useState(readEditorBodyFontPreference);
   const [uiFont, setUiFont] = useState(readUiFontPreference);
 
@@ -546,6 +553,34 @@ export const PreferenceCard = ({
                   <SelectContent>
                     {NOTE_PROSE_FONT_SIZES.map((size) => (
                       <SelectItem key={size} value={String(size)}>{size}</SelectItem>
+                    ))}
+                  </SelectContent>
+                </Select>
+              </div>
+            </div>
+
+            <div className="flex min-h-16 flex-col items-start gap-3 px-4 py-3 sm:flex-row sm:items-center sm:justify-between sm:gap-4">
+              <div className="flex min-w-0 items-center gap-3">
+                <Maximize2 className="h-4 w-4 shrink-0 text-slate-500" />
+                <div className="min-w-0">
+                  <div className={SETTINGS_ITEM_TITLE_CLASSNAME}>{t("settings.editorContentWidthTitle")}</div>
+                </div>
+              </div>
+              <div className="w-full shrink-0 sm:w-80">
+                <Select
+                  value={editorContentWidth}
+                  onValueChange={(value) => writeEditorContentWidthPreference(value)}
+                >
+                  <SelectTrigger aria-label={t("settings.editorContentWidthTitle")} className="h-9 bg-card">
+                    <SelectValue />
+                  </SelectTrigger>
+                  <SelectContent>
+                    {EDITOR_CONTENT_WIDTH_OPTIONS.map((option) => (
+                      <SelectItem key={option} value={option}>
+                        {option === DEFAULT_EDITOR_CONTENT_WIDTH
+                          ? `${option}px · ${t("settings.editorContentWidthDefault")}`
+                          : `${option}px`}
+                      </SelectItem>
                     ))}
                   </SelectContent>
                 </Select>
