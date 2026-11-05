@@ -4116,7 +4116,7 @@ const RichEditorPane = ({
           <div
             className={cn(
               "flex min-w-0 flex-1",
-              desktopFocusMode && "mx-auto w-full max-w-[1400px]",
+              desktopFocusMode && "mx-auto w-full",
             )}
             style={editorColumnMatchesArticle && editorScrollbarGutter > 0 ? { paddingRight: editorScrollbarGutter } : undefined}
           >
@@ -4617,7 +4617,7 @@ const RichEditorPane = ({
               ? "h-full min-h-0 flex-1 items-stretch px-0 py-0"
               : cn("min-h-full items-start py-2", MEMO_EDITOR_READING_GUTTER_CLASS_NAME),
             desktopFocusMode
-              ? "mx-auto w-full max-w-[1400px] justify-center"
+              ? "mx-auto w-full justify-center"
               : isDesktopColumn
                 ? "w-full justify-center"
                 : "w-full"
